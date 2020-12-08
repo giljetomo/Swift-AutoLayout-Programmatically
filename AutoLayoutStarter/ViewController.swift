@@ -59,19 +59,25 @@ class ViewController: UIViewController {
     setupLayout()
     
   }
-    func makeSquareView() -> UIView {
-        let square = UIView(frame: .zero)
-        square.backgroundColor = .blue
-        square.translatesAutoresizingMaskIntoConstraints = false
-        square.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        square.heightAnchor.constraint(equalToConstant: 80).isActive = true
+    func makeSquareViews() -> [UIView] {
         
-        return square
+        var squareViews = [UIView]()
+        
+        for _ in 1...3 {
+            let square = UIView(frame: .zero)
+            square.backgroundColor = .blue
+            square.translatesAutoresizingMaskIntoConstraints = false
+            square.widthAnchor.constraint(equalToConstant: 80).isActive = true
+            square.heightAnchor.constraint(equalToConstant: 80).isActive = true
+            
+            squareViews.append(square)
+        }
+        return squareViews
     }
 
     func stackViewSquares() {
         
-        let stackView = UIStackView(arrangedSubviews: [makeSquareView(), makeSquareView(), makeSquareView()])
+        let stackView = UIStackView(arrangedSubviews: makeSquareViews())
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -81,7 +87,7 @@ class ViewController: UIViewController {
         
         stackView.centerXAnchor.constraint(equalTo: mainView.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: mainView.centerYAnchor).isActive = true
-        stackView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.6).isActive = true
+        stackView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.75).isActive = true
         
     }
     
